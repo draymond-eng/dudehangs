@@ -135,6 +135,11 @@
   .up .date .m { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
   .up h3 { font-size: 18px; font-weight: 700; }
   .up p { color: var(--muted); font-size: 15px; }
+  .up.special {
+    border: 1.5px solid var(--accent);
+    box-shadow: 0 6px 24px rgba(242,160,61,0.15);
+  }
+  .up.special .date { background: linear-gradient(135deg, #ffc46b, #e85d2c); }
   .upnote { margin-top: 14px; color: var(--muted); font-size: 15px; }
 
   .promises { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -287,23 +292,42 @@
   </div>
 
 <script>
-  // Always show the next 4 Saturday park hangs — the list can never go stale.
+  // Next 4 Saturday park hangs, generated so the list never goes stale,
+  // plus pinned one-off events merged in by date.
   const HANG_TIME = '9:00 AM';
-  const box = document.getElementById('upcoming');
+  const PINNED = [
+    { y: 2026, m: 8, day: 13, emoji: '🏈', special: true,
+      title: 'NFL Week 1 Watch Hang · Sunday',
+      note: "Football's BACK. First Sunday of the season — couch or bar, details in the chat." },
+  ];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const now = new Date();
-  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const events = [];
+  const d = new Date(today);
   let daysUntilSat = (6 - d.getDay() + 7) % 7;
   if (daysUntilSat === 0 && now.getHours() >= 11) daysUntilSat = 7; // today's hang already happened
   d.setDate(d.getDate() + daysUntilSat);
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   for (let i = 0; i < 4; i++) {
-    const row = document.createElement('div');
-    row.className = 'up';
-    row.innerHTML = '<div class="date"><span class="d">' + d.getDate() + '</span><span class="m">' + months[d.getMonth()] + '</span></div>' +
-      '<div><h3>🌳 Park Hang · Saturday, ' + HANG_TIME + '</h3>' +
-      '<p>' + (i === 0 ? 'This week — walk, talk, meet the dudes.' : 'Same time, same park.') + '</p></div>';
-    box.appendChild(row);
+    events.push({ date: new Date(d), emoji: '🌳',
+      title: 'Park Hang · Saturday, ' + HANG_TIME,
+      note: i === 0 ? 'This week — walk, talk, meet the dudes.' : 'Same time, same park.' });
     d.setDate(d.getDate() + 7);
+  }
+  for (const p of PINNED) {
+    const pd = new Date(p.y, p.m, p.day);
+    if (pd >= today) events.push({ date: pd, emoji: p.emoji, title: p.title, note: p.note, special: p.special });
+  }
+  events.sort((a, b) => a.date - b.date);
+
+  const box = document.getElementById('upcoming');
+  for (const e of events) {
+    const row = document.createElement('div');
+    row.className = 'up' + (e.special ? ' special' : '');
+    row.innerHTML = '<div class="date"><span class="d">' + e.date.getDate() + '</span><span class="m">' + months[e.date.getMonth()] + '</span></div>' +
+      '<div><h3>' + e.emoji + ' ' + e.title + '</h3><p>' + e.note + '</p></div>';
+    box.appendChild(row);
   }
 </script>
 </body>
