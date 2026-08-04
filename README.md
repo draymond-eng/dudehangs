@@ -16,8 +16,11 @@ A no-pressure hang group for dads & dudes. Park hangs, gym hangs, game day hangs
 
 ## Go live (one-time setup)
 
-GitHub Pages: repo **Settings → Pages → Source: Deploy from a branch → `main` / root → Save**.
-The site will be at https://draymond-eng.github.io/dudehangs/ in a minute or two.
+1. GitHub Pages: repo **Settings → Pages → Source: Deploy from a branch → `main` / root → Save**.
+2. In the same Pages settings, set **Custom domain: `dudehangs.com`** and check **Enforce HTTPS**
+   (the `CNAME` file in this repo keeps that setting sticky across deploys).
+3. At your domain registrar, point `dudehangs.com` at GitHub Pages:
+   - Four **A records** on `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - One **CNAME record**: `www` → `draymond-eng.github.io`
 
-If you later point a custom domain at it (e.g. `dudehangs.com`), add a `CNAME` file
-and regenerate the QR code so cards point to the new domain.
+The cards' QR codes point at https://dudehangs.com.
