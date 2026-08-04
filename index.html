@@ -113,6 +113,30 @@
   }
   .steps .fine { color: var(--muted); font-size: 15px; display: block; }
 
+  .upcoming { display: grid; gap: 10px; }
+  .up {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--card);
+    border: 1px solid #2b241c;
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+  .up .date {
+    flex: 0 0 auto;
+    width: 58px;
+    text-align: center;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: 10px;
+    padding: 6px 0 8px;
+    line-height: 1.05;
+  }
+  .up .date .d { display: block; font-size: 24px; font-weight: 800; }
+  .up .date .m { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .up h3 { font-size: 18px; font-weight: 700; }
+  .up p { color: var(--muted); font-size: 15px; }
+  .upnote { margin-top: 14px; color: var(--muted); font-size: 15px; }
+
   .promises { display: flex; flex-wrap: wrap; gap: 10px; }
   .promises span {
     background: var(--card);
@@ -198,6 +222,12 @@
     </section>
 
     <section>
+      <h2>Next Up</h2>
+      <div class="upcoming" id="upcoming"></div>
+      <p class="upnote">Exact park spot drops in the group chat the night before. Join below. 👇</p>
+    </section>
+
+    <section>
       <h2>The Schedule</h2>
       <div class="hangs">
         <div class="hang">
@@ -255,5 +285,26 @@
     </footer>
 
   </div>
+
+<script>
+  // Always show the next 4 Saturday park hangs — the list can never go stale.
+  const HANG_TIME = '9:00 AM';
+  const box = document.getElementById('upcoming');
+  const now = new Date();
+  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  let daysUntilSat = (6 - d.getDay() + 7) % 7;
+  if (daysUntilSat === 0 && now.getHours() >= 11) daysUntilSat = 7; // today's hang already happened
+  d.setDate(d.getDate() + daysUntilSat);
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  for (let i = 0; i < 4; i++) {
+    const row = document.createElement('div');
+    row.className = 'up';
+    row.innerHTML = '<div class="date"><span class="d">' + d.getDate() + '</span><span class="m">' + months[d.getMonth()] + '</span></div>' +
+      '<div><h3>🌳 Park Hang · Saturday, ' + HANG_TIME + '</h3>' +
+      '<p>' + (i === 0 ? 'This week — walk, talk, meet the dudes.' : 'Same time, same park.') + '</p></div>';
+    box.appendChild(row);
+    d.setDate(d.getDate() + 7);
+  }
+</script>
 </body>
 </html>
