@@ -46,6 +46,7 @@
   }
 
   .card {
+    position: relative;
     width: 3.5in;
     height: 2in;
     background: var(--bg);
@@ -53,11 +54,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.18in 0.22in;
-    border-left: 0.07in solid var(--accent);
+    padding: 0.18in 0.22in 0.18in 0.32in;
     outline: 1px dashed #999; /* cut guide */
     outline-offset: -0.5px;
     overflow: hidden;
+  }
+  .card .edge {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 0.1in;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card .edge span {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 0.062in; font-weight: 800; letter-spacing: 0.14em;
+    color: var(--bg); text-transform: uppercase; white-space: nowrap;
   }
   .card .left { display: flex; flex-direction: column; justify-content: center; gap: 0.06in; }
   .card h2 {
@@ -118,6 +128,7 @@
 
 <div class="sheet" id="sheet">
   <div class="card">
+    <div class="edge"><span>Chicago · Est. 2026</span></div>
     <div class="left">
       <h2>Dude,<br>let's <span class="pop">hang.</span></h2>
       <p class="why">You got this card because <strong>you looked cool.</strong> It's a hang group for dads &amp; dudes. Come hang. <span class="sig">— Draymond</span></p>
