@@ -43,25 +43,40 @@
 
   /* the badge slams down like a stamp, then the headline shudders on impact */
   @keyframes slam {
-    0%   { opacity: 0; transform: scale(3.2) rotate(8deg); }
-    55%  { opacity: 1; transform: scale(0.92) rotate(-3deg); }
-    75%  { transform: scale(1.06) rotate(-0.5deg); }
+    0%   { opacity: 0; transform: scale(3.8) rotate(10deg); }
+    55%  { opacity: 1; transform: scale(0.9) rotate(-3.5deg); }
+    75%  { transform: scale(1.08) rotate(-0.5deg); }
     100% { transform: scale(1) rotate(-1.5deg); }
   }
   @keyframes impact {
     0%, 100% { transform: none; }
-    20% { transform: translate(1px, 2px) rotate(0.3deg); }
-    45% { transform: translate(-2px, -1px) rotate(-0.25deg); }
-    70% { transform: translate(1px, 1px); }
+    15% { transform: translate(2px, 3px) rotate(0.5deg); }
+    40% { transform: translate(-3px, -2px) rotate(-0.4deg); }
+    65% { transform: translate(2px, 1px); }
+    85% { transform: translate(-1px, 0); }
   }
 
   header { padding: 96px 0 64px; text-align: left; position: relative; z-index: 1; }
   header > * { animation: rise .6s ease-out backwards; }
   header .sub { animation-delay: .15s; }
-  header .kicker { animation: slam .5s cubic-bezier(.5, 0, .3, 1.4) .35s backwards; }
-  header h1 { animation: rise .6s ease-out backwards, impact .3s ease-out .62s; }
+  header .kicker { animation: slam .45s cubic-bezier(.6, 0, .3, 1.4) .55s backwards; }
+  header h1 { animation: rise .6s ease-out backwards, impact .35s ease-out .82s; }
+
+  /* sections float up as they scroll into view */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* hang-card emojis do a little wiggle on hover */
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-10deg) scale(1.15); }
+    60% { transform: rotate(8deg) scale(1.1); }
+  }
+  .hang:hover .emoji { animation: wiggle .45s ease-in-out; }
+
   @media (prefers-reduced-motion: reduce) {
-    header > *, header .kicker, header h1 { animation: none; }
+    header > *, header .kicker, header h1, .hang:hover .emoji, .btn { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
   .kicker {
     display: inline-block;
@@ -202,6 +217,11 @@
     letter-spacing: 0.01em;
     box-shadow: 0 8px 32px rgba(242,160,61,0.35), 0 2px 8px rgba(0,0,0,0.4);
     transition: transform .15s ease, box-shadow .15s ease;
+    animation: breathe 4s ease-in-out 2s infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 8px 32px rgba(242,160,61,0.35), 0 2px 8px rgba(0,0,0,0.4); }
+    50% { box-shadow: 0 10px 48px rgba(242,160,61,0.65), 0 2px 8px rgba(0,0,0,0.4); }
   }
   .btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 44px rgba(242,160,61,0.5), 0 2px 8px rgba(0,0,0,0.4); }
   .btn:active { transform: scale(0.98); }
@@ -224,7 +244,7 @@
     <header>
       <span class="kicker">This is not a network­ing group</span>
       <h1>Dude,<br>let's <span class="pop">hang.</span></h1>
-      <p class="sub">If somebody handed you a card, it's because <strong>you looked cool</strong> and we figured you might want more friends and less small talk. This is a hang group for dads &amp; dudes. That's the whole thing.</p>
+      <p class="sub">Some dude handed you a card because <strong>you looked cool.</strong> That's the entire vetting process. This is a hang group for dads &amp; dudes who want more friends and less small talk.</p>
     </header>
 
     <section>
@@ -408,6 +428,21 @@
       '<div><h3>' + e.emoji + ' ' + e.title + '</h3><p>' + e.note + '</p></div>';
     box.appendChild(row);
   }
+
+  // scroll reveals: cards and rows float up as they enter the viewport, staggered
+  const revealables = document.querySelectorAll('.hang, .up, .steps li, .promises span, .joke, section h2');
+  revealables.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+      el.style.transitionDelay = Math.min(siblings.indexOf(el), 5) * 70 + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  revealables.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
