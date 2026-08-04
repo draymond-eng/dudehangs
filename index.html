@@ -142,6 +142,18 @@
   .up.special .date { background: linear-gradient(135deg, #ffc46b, #e85d2c); }
   .upnote { margin-top: 14px; color: var(--muted); font-size: 15px; }
 
+  .joke {
+    background: var(--card);
+    border: 1px solid #2b241c;
+    border-left: 4px solid var(--accent);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .joke p:first-child { font-size: 20px; line-height: 1.5; }
+  .joke p:first-child::before { content: '“'; color: var(--accent); font-weight: 800; }
+  .joke p:first-child::after { content: '”'; color: var(--accent); font-weight: 800; }
+  .joke-sig { margin-top: 10px; color: var(--muted); font-size: 14px; font-style: italic; }
+
   .promises { display: flex; flex-wrap: wrap; gap: 10px; }
   .promises span {
     background: var(--card);
@@ -278,6 +290,14 @@
       </div>
     </section>
 
+    <section>
+      <h2>Dad Joke of the Day</h2>
+      <div class="joke">
+        <p id="joke-text"></p>
+        <p class="joke-sig">— every dad, probably</p>
+      </div>
+    </section>
+
     <div class="cta">
       <h2>Alright dude, let's hang.</h2>
       <p>Tell us your name and which hang sounds good.</p>
@@ -320,6 +340,42 @@
     if (pd >= today) events.push({ date: pd, emoji: p.emoji, title: p.title, note: p.note, special: p.special });
   }
   events.sort((a, b) => a.date - b.date);
+
+  // Dad joke of the day — rotates daily, no maintenance required.
+  const JOKES = [
+    "I used to hate facial hair, but then it grew on me.",
+    "I'm reading a book about anti-gravity. It's impossible to put down.",
+    "Why don't eggs tell jokes? They'd crack each other up.",
+    "I only know 25 letters of the alphabet. I don't know y.",
+    "What do you call a fake noodle? An impasta.",
+    "I used to play piano by ear, but now I use my hands.",
+    "Why did the scarecrow win an award? He was outstanding in his field.",
+    "I ordered a chicken and an egg online. I'll let you know which comes first.",
+    "I don't trust stairs. They're always up to something.",
+    "Why do dads take an extra pair of socks golfing? In case they get a hole in one.",
+    "I made a pencil with two erasers. It was pointless.",
+    "What did the ocean say to the beach? Nothing, it just waved.",
+    "Why couldn't the bicycle stand up by itself? It was two tired.",
+    "What do you call cheese that isn't yours? Nacho cheese.",
+    "I asked my dog what's two minus two. He said nothing.",
+    "What time did the man go to the dentist? Tooth hurty.",
+    "I'm on a seafood diet. I see food and I eat it.",
+    "Want to hear a joke about construction? I'm still working on it.",
+    "Why did the coffee file a police report? It got mugged.",
+    "What do you call a factory that makes okay products? A satisfactory.",
+    "How does a penguin build its house? Igloos it together.",
+    "I told my wife she should embrace her mistakes. She gave me a hug.",
+    "What's brown and sticky? A stick.",
+    "Did you hear about the guy who invented the knock-knock joke? He won the no-bell prize.",
+    "Why do bees have sticky hair? Because they use honeycombs.",
+    "I used to be a banker, but I lost interest.",
+    "5 out of 4 people admit they're bad with fractions.",
+    "How do you make a tissue dance? Put a little boogie in it.",
+    "Why did the math book look sad? It had too many problems.",
+    "I would tell you a joke about pizza, but it's too cheesy.",
+  ];
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  document.getElementById('joke-text').textContent = JOKES[dayOfYear % JOKES.length];
 
   const box = document.getElementById('upcoming');
   for (const e of events) {
