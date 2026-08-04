@@ -41,9 +41,28 @@
 
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
+  /* the badge slams down like a stamp, then the headline shudders on impact */
+  @keyframes slam {
+    0%   { opacity: 0; transform: scale(3.2) rotate(8deg); }
+    55%  { opacity: 1; transform: scale(0.92) rotate(-3deg); }
+    75%  { transform: scale(1.06) rotate(-0.5deg); }
+    100% { transform: scale(1) rotate(-1.5deg); }
+  }
+  @keyframes impact {
+    0%, 100% { transform: none; }
+    20% { transform: translate(1px, 2px) rotate(0.3deg); }
+    45% { transform: translate(-2px, -1px) rotate(-0.25deg); }
+    70% { transform: translate(1px, 1px); }
+  }
+
   header { padding: 96px 0 64px; text-align: left; position: relative; z-index: 1; }
   header > * { animation: rise .6s ease-out backwards; }
   header .sub { animation-delay: .15s; }
+  header .kicker { animation: slam .5s cubic-bezier(.5, 0, .3, 1.4) .35s backwards; }
+  header h1 { animation: rise .6s ease-out backwards, impact .3s ease-out .62s; }
+  @media (prefers-reduced-motion: reduce) {
+    header > *, header .kicker, header h1 { animation: none; }
+  }
   .kicker {
     display: inline-block;
     font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
