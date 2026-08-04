@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dude, Let's Hang — Printable Cards</title>
+<style>
+  :root {
+    --bg: #14100c;
+    --ink: #f5efe6;
+    --muted: #b8ab99;
+    --accent: #f2a03d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #e8e4de; }
+
+  /* On-screen instructions — hidden when printing */
+  .instructions {
+    max-width: 8.5in;
+    margin: 24px auto 0;
+    padding: 20px 28px;
+    background: #fff;
+    border-radius: 12px;
+    line-height: 1.6;
+  }
+  .instructions h1 { font-size: 22px; margin-bottom: 8px; }
+  .instructions ol { margin-left: 20px; }
+  .instructions code { background: #f0ece6; padding: 1px 6px; border-radius: 4px; }
+
+  /* The sheet: US Letter, 10 business cards (2 × 5), each 3.5in × 2in */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 24px auto;
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 3.5in);
+    grid-template-rows: repeat(5, 2in);
+    justify-content: center;
+    align-content: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.15);
+  }
+
+  .card {
+    width: 3.5in;
+    height: 2in;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.18in 0.22in;
+    outline: 1px dashed #999; /* cut guide */
+    outline-offset: -0.5px;
+    overflow: hidden;
+  }
+  .card .left { display: flex; flex-direction: column; justify-content: center; gap: 0.06in; }
+  .card h2 {
+    font-size: 0.27in;
+    line-height: 1.02;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .card h2 .pop { color: var(--accent); }
+  .card .why {
+    font-size: 0.105in;
+    color: var(--muted);
+    line-height: 1.45;
+    max-width: 1.9in;
+  }
+  .card .why strong { color: var(--ink); font-weight: 700; }
+  .card .hangs {
+    font-size: 0.09in;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.05in;
+  }
+  .card .qr {
+    width: 0.95in;
+    height: 0.95in;
+    background: #fff;
+    border-radius: 0.06in;
+    padding: 0.07in;
+    color: #14100c; /* QR uses currentColor */
+  }
+  .card .qr svg { width: 100%; height: 100%; display: block; }
+  .card .url { font-size: 0.075in; color: var(--muted); letter-spacing: 0.01em; }
+
+  @media print {
+    body { background: #fff; }
+    .instructions { display: none; }
+    .sheet { margin: 0; box-shadow: none; }
+    .card { outline: 0.5px dashed #bbb; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { size: letter; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <h1>🖨️ Print your hang cards</h1>
+  <ol>
+    <li>Print this page at <strong>100% scale</strong> ("Actual size" — not "Fit to page").</li>
+    <li>In the print dialog, turn ON <strong>"Background graphics"</strong> so the cards print dark.</li>
+    <li>Use cardstock if you have it. Regular paper works fine too — it's a hang group, not a law firm.</li>
+    <li>Cut along the dashed lines. 10 cards per sheet.</li>
+    <li>Walk around the park. See a cool dude. Hand him a card. Done.</li>
+  </ol>
+</div>
+
+<div class="sheet" id="sheet">
+  <div class="card">
+    <div class="left">
+      <h2>Dude,<br>let's <span class="pop">hang.</span></h2>
+      <p class="why">You got this card because <strong>you looked cool.</strong> It's a hang group for dads &amp; dudes. No pitch, no pressure.</p>
+      <p class="hangs">🌳 Park · 🏋️ Gym · 🏈 Game Day</p>
+    </div>
+    <div class="right">
+      <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path d="M0 0h7v1H0zM9 0h2v1H9zM12 0h1v1H12zM14 0h2v1H14zM17 0h3v1H17zM22 0h7v1H22zM0 1h1v1H0zM6 1h1v1H6zM8 1h2v1H8zM11 1h3v1H11zM15 1h1v1H15zM17 1h1v1H17zM19 1h2v1H19zM22 1h1v1H22zM28 1h1v1H28zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM10 2h2v1H10zM16 2h1v1H16zM19 2h1v1H19zM22 2h1v1H22zM24 2h3v1H24zM28 2h1v1H28zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM9 3h1v1H9zM11 3h1v1H11zM14 3h1v1H14zM18 3h2v1H18zM22 3h1v1H22zM24 3h3v1H24zM28 3h1v1H28zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM8 4h1v1H8zM10 4h1v1H10zM12 4h4v1H12zM19 4h1v1H19zM22 4h1v1H22zM24 4h3v1H24zM28 4h1v1H28zM0 5h1v1H0zM6 5h1v1H6zM14 5h6v1H14zM22 5h1v1H22zM28 5h1v1H28zM0 6h7v1H0zM8 6h1v1H8zM10 6h1v1H10zM12 6h1v1H12zM14 6h1v1H14zM16 6h1v1H16zM18 6h1v1H18zM20 6h1v1H20zM22 6h7v1H22zM11 7h1v1H11zM13 7h1v1H13zM15 7h3v1H15zM20 7h1v1H20zM0 8h1v1H0zM2 8h1v1H2zM4 8h1v1H4zM6 8h1v1H6zM10 8h4v1H10zM16 8h2v1H16zM19 8h2v1H19zM24 8h1v1H24zM27 8h1v1H27zM0 9h1v1H0zM2 9h1v1H2zM9 9h1v1H9zM11 9h1v1H11zM13 9h1v1H13zM16 9h1v1H16zM21 9h2v1H21zM25 9h1v1H25zM28 9h1v1H28zM0 10h1v1H0zM3 10h4v1H3zM8 10h1v1H8zM10 10h1v1H10zM13 10h1v1H13zM16 10h1v1H16zM18 10h1v1H18zM21 10h1v1H21zM23 10h2v1H23zM26 10h3v1H26zM0 11h1v1H0zM4 11h2v1H4zM8 11h1v1H8zM11 11h1v1H11zM13 11h5v1H13zM20 11h1v1H20zM23 11h2v1H23zM27 11h1v1H27zM0 12h1v1H0zM2 12h1v1H2zM4 12h1v1H4zM6 12h6v1H6zM13 12h1v1H13zM16 12h2v1H16zM20 12h4v1H20zM25 12h1v1H25zM27 12h2v1H27zM0 13h6v1H0zM7 13h4v1H7zM12 13h3v1H12zM16 13h3v1H16zM20 13h3v1H20zM25 13h1v1H25zM28 13h1v1H28zM5 14h10v1H5zM20 14h2v1H20zM23 14h3v1H23zM27 14h2v1H27zM1 15h1v1H1zM3 15h1v1H3zM5 15h1v1H5zM7 15h1v1H7zM9 15h2v1H9zM13 15h6v1H13zM20 15h1v1H20zM22 15h2v1H22zM25 15h1v1H25zM27 15h1v1H27zM4 16h1v1H4zM6 16h1v1H6zM8 16h2v1H8zM11 16h4v1H11zM17 16h1v1H17zM19 16h4v1H19zM25 16h1v1H25zM27 16h2v1H27zM2 17h1v1H2zM4 17h2v1H4zM8 17h1v1H8zM12 17h1v1H12zM16 17h2v1H16zM20 17h3v1H20zM25 17h2v1H25zM28 17h1v1H28zM0 18h1v1H0zM3 18h1v1H3zM5 18h2v1H5zM10 18h1v1H10zM12 18h2v1H12zM16 18h3v1H16zM21 18h1v1H21zM27 18h2v1H27zM1 19h1v1H1zM4 19h2v1H4zM7 19h1v1H7zM9 19h2v1H9zM13 19h5v1H13zM19 19h5v1H19zM25 19h1v1H25zM27 19h1v1H27zM0 20h1v1H0zM3 20h8v1H3zM12 20h1v1H12zM14 20h1v1H14zM16 20h3v1H16zM20 20h5v1H20zM8 21h1v1H8zM10 21h1v1H10zM16 21h1v1H16zM19 21h2v1H19zM24 21h1v1H24zM26 21h3v1H26zM0 22h7v1H0zM11 22h3v1H11zM17 22h1v1H17zM19 22h2v1H19zM22 22h1v1H22zM24 22h2v1H24zM27 22h2v1H27zM0 23h1v1H0zM6 23h1v1H6zM10 23h1v1H10zM12 23h1v1H12zM16 23h2v1H16zM20 23h1v1H20zM24 23h2v1H24zM0 24h1v1H0zM2 24h3v1H2zM6 24h1v1H6zM8 24h2v1H8zM11 24h1v1H11zM15 24h3v1H15zM20 24h5v1H20zM0 25h1v1H0zM2 25h3v1H2zM6 25h1v1H6zM9 25h2v1H9zM13 25h1v1H13zM24 25h1v1H24zM26 25h3v1H26zM0 26h1v1H0zM2 26h3v1H2zM6 26h1v1H6zM8 26h1v1H8zM10 26h2v1H10zM18 26h2v1H18zM23 26h3v1H23zM28 26h1v1H28zM0 27h1v1H0zM6 27h1v1H6zM11 27h4v1H11zM16 27h5v1H16zM23 27h1v1H23zM27 27h1v1H27zM0 28h7v1H0zM8 28h6v1H8zM15 28h3v1H15zM20 28h1v1H20zM22 28h3v1H22zM27 28h2v1H27z" fill="currentColor"/></svg></div>
+      <div class="url">draymond-eng.github.io/dudehangs</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Duplicate the first card to fill the 10-up sheet
+  const sheet = document.getElementById('sheet');
+  const card = sheet.querySelector('.card');
+  for (let i = 0; i < 9; i++) sheet.appendChild(card.cloneNode(true));
+</script>
+
+</body>
+</html>
