@@ -6,10 +6,11 @@ into the best weekly hang there is.
 
 ## The engine
 
-**One anchor hang: Park Hang, every Saturday morning. Same time. Same park. Every week.**
+**One anchor hang: Park Hang, every Sunday, 9 AM. Same time. Same park. Every week.**
 
 Runs whether 2 dudes show up or 12. Guys join routines, not groups — the whole
-pitch is "Saturdays, 9am, the park" and nothing to decide.
+pitch is "Sundays, 9am, the park" and nothing to decide. In football season,
+Sunday becomes the all-day Dude Hangs day: park at 9, game at 1.
 
 The group chat is the clubhouse. The site is just the front door.
 The exact park/time is never published — new guys email/text and get this
@@ -17,7 +18,7 @@ week's spot. Every member arrives through a human.
 
 ## Phase 1 — Founding crew sprint (now → Labor Day)
 
-~4 Saturdays left. Every park walk is also a card drop.
+~4 Sundays left. Every park walk is also a card drop.
 
 - Carry 10 cards every time you leave the house. Hand out at least 5 per walk.
 - The handoff script: "Hey man — no pitch, I'm starting a hang group for dudes.
@@ -48,7 +49,7 @@ boxing, kettlebells, CrossFit intro, whatever they want to show off.
 ## Phase 2 — Football season (September →)
 
 - Game Day Hang goes weekly the first week of the season. Rotating couch or a bar.
-- Park Hang keeps running Saturday mornings. They stack, not compete.
+- Park Hang keeps running Sunday mornings before the games. They stack, not compete.
 - Every game hang is a "bring one dude" opportunity — easiest invite in sports.
 
 ## Always

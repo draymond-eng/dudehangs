@@ -238,7 +238,7 @@
         <div class="hang">
           <div class="emoji">📅</div>
           <div>
-            <h3>Park Hang — every Saturday morning</h3>
+            <h3>Park Hang — every Sunday, 9 AM</h3>
             <p>Same time, same park, every week. Miss one? Come next week. This week's spot gets posted in the group chat.</p>
           </div>
         </div>
@@ -292,13 +292,13 @@
   </div>
 
 <script>
-  // Next 4 Saturday park hangs, generated so the list never goes stale,
+  // Next 4 Sunday park hangs, generated so the list never goes stale,
   // plus pinned one-off events merged in by date.
   const HANG_TIME = '9:00 AM';
   const PINNED = [
     { y: 2026, m: 8, day: 13, emoji: '🏈', special: true,
       title: 'NFL Week 1 Watch Hang · Sunday',
-      note: "Football's BACK. First Sunday of the season — kids welcome, they play while we watch. Details in the chat." },
+      note: "Football's BACK. Double-header: park hang at 9, first game of the season after — kids welcome, they play while we watch. Details in the chat." },
   ];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const now = new Date();
@@ -306,12 +306,12 @@
 
   const events = [];
   const d = new Date(today);
-  let daysUntilSat = (6 - d.getDay() + 7) % 7;
-  if (daysUntilSat === 0 && now.getHours() >= 11) daysUntilSat = 7; // today's hang already happened
-  d.setDate(d.getDate() + daysUntilSat);
+  let daysUntilSun = (0 - d.getDay() + 7) % 7;
+  if (daysUntilSun === 0 && now.getHours() >= 11) daysUntilSun = 7; // today's hang already happened
+  d.setDate(d.getDate() + daysUntilSun);
   for (let i = 0; i < 4; i++) {
     events.push({ date: new Date(d), emoji: '🌳',
-      title: 'Park Hang · Saturday, ' + HANG_TIME,
+      title: 'Park Hang · Sunday, ' + HANG_TIME,
       note: i === 0 ? 'This week — walk, talk, meet the dudes.' : 'Same time, same park.' });
     d.setDate(d.getDate() + 7);
   }
