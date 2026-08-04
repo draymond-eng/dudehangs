@@ -27,6 +27,7 @@
     --line: #2b241c;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: #f2a03d; color: #14100c; }
   html { overflow-x: clip; }
   body {
     background: var(--bg);
@@ -312,6 +313,7 @@
         <span>✓ No app</span>
         <span>✓ Just show up</span>
         <span>✓ Come once or come always</span>
+        <span>✓ Dad jokes included</span>
       </div>
     </section>
 
@@ -331,7 +333,8 @@
     </div>
 
     <footer>
-      Dude, Let's Hang · Chicago · Started by a dad who wanted more hangs.
+      Dude, Let's Hang · Chicago · Started by a dad who wanted more hangs.<br>
+      This website was built instead of fixing the squeaky door. Priorities.
     </footer>
 
   </div>
@@ -388,6 +391,9 @@
   ];
   const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
   document.getElementById('joke-text').textContent = JOKES[dayOfYear % JOKES.length];
+
+  console.log('%cDude. You\'re reading the source code on a hang group website.', 'font-size:16px;font-weight:bold;color:#f2a03d');
+  console.log('You definitely need more hangs. First one\'s on the site. — Draymond');
 
   const box = document.getElementById('upcoming');
   for (const e of events) {
