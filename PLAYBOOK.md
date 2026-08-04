@@ -25,6 +25,26 @@ week's spot. Every member arrives through a human.
 - Anyone who emails gets a text back same day + added to the group chat.
 - **Goal: 8–10 regulars in the group chat by Labor Day.** Not a crowd — a core.
 
+## Phase 1.5 — The gym partnership (pitch now, class late August)
+
+The escalation ladder: park hang (zero commitment) → private gym class
+(structured, instructor-led, nobody has to perform) → weekly football
+(easiest recurring hang there is). Each phase warms guys up for the next.
+
+**The play:** partner with a local gym for a private class for the group —
+boxing, kettlebells, CrossFit intro, whatever they want to show off.
+
+**The pitch (you're bringing leads, not asking a favor):**
+> "I run a local dads' hang group. I want to bring 8–12 guys in for a
+> private intro class. You get every one of them in your building as a
+> membership prospect, we get a hang. Off-peak slot is fine."
+
+- Pitch 2–3 gyms this week; boxing gyms and CrossFit boxes convert fastest.
+- Land the class in late August: crew at peak, football not yet started.
+- If it goes well, ask for a recurring monthly slot ("first Thursday").
+- Once a gym is signed: update the site's Gym Hang copy from "pop-up"
+  to the partner class.
+
 ## Phase 2 — Football season (September →)
 
 - Game Day Hang goes weekly the first week of the season. Rotating couch or a bar.
