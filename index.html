@@ -393,7 +393,8 @@
     "Why did the math book look sad? It had too many problems.",
     "I would tell you a joke about pizza, but it's too cheesy.",
   ];
-  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  // UTC math so daylight saving can't make two days share a joke
+  const dayOfYear = (Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(today.getFullYear(), 0, 1)) / 86400000;
   document.getElementById('joke-text').textContent = JOKES[dayOfYear % JOKES.length];
 
   console.log('%cDude. You\'re reading the source code on a hang group website.', 'font-size:16px;font-weight:bold;color:#f2a03d');
