@@ -247,6 +247,20 @@
   .btn:active { transform: scale(0.98); }
   .cta .alt { margin-top: 16px; font-size: 15px; color: var(--muted); }
   .cta .alt a { color: var(--accent); }
+  .btn-ghost {
+    margin-top: 26px;
+    background: none;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 26px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn-ghost:hover { background: var(--accent); color: var(--accent-ink); }
 
   footer {
     border-top: 1px solid #2b241c;
@@ -343,6 +357,7 @@
       <p>Tell us your name and which hang sounds good.</p>
       <a class="btn" href="https://chat.whatsapp.com/Kb9aeYgL0AfDJxPjairgnR?s=cl&amp;p=i&amp;mlu=0">Join the Group Chat 🤝</a>
       <p class="alt">Opens the Dude Hangs WhatsApp. That's where everything happens.<br>Not a WhatsApp guy? Email <a href="mailto:draymond@threecitiessocial.com">draymond@threecitiessocial.com</a></p>
+      <button class="btn-ghost" id="share-btn">📲 Know a dude? Send him this</button>
     </div>
 
     <footer>
@@ -405,6 +420,21 @@
   // UTC math so daylight saving can't make two days share a joke
   const dayOfYear = (Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(today.getFullYear(), 0, 1)) / 86400000;
   document.getElementById('joke-text').textContent = JOKES[dayOfYear % JOKES.length];
+
+  // Send-to-a-dude: native share sheet, clipboard fallback
+  const shareBtn = document.getElementById('share-btn');
+  const SHARE_TEXT = 'Yo. This seems like us. https://dudehangs.com';
+  shareBtn.addEventListener('click', async () => {
+    if (navigator.share) {
+      try { await navigator.share({ text: SHARE_TEXT }); } catch (e) { /* dude closed the sheet, all good */ }
+    } else {
+      try {
+        await navigator.clipboard.writeText(SHARE_TEXT);
+        shareBtn.textContent = 'Copied. Go text him.';
+        setTimeout(() => { shareBtn.textContent = '📲 Know a dude? Send him this'; }, 2200);
+      } catch (e) {}
+    }
+  });
 
   console.log('%cDude. You\'re reading the source code on a hang group website.', 'font-size:16px;font-weight:bold;color:#f2a03d');
   console.log('You definitely need more hangs. First one\'s on the site. — Draymond');
