@@ -162,20 +162,6 @@
   }
   .steps .fine { color: var(--muted); font-size: 15px; display: block; }
 
-  .mission {
-    background: var(--card);
-    border: 1.5px solid var(--accent);
-    border-radius: 14px;
-    padding: 24px;
-    box-shadow: 0 6px 24px rgba(242,160,61,0.12);
-  }
-  .m-big { font-size: 22px; font-weight: 700; line-height: 1.35; }
-  .m-num { font-family: 'Archivo Black', 'Inter', sans-serif; font-weight: 400; font-size: 34px; color: var(--accent); }
-  .m-track { margin-top: 16px; height: 12px; border-radius: 999px; background: #2b241c; overflow: hidden; }
-  .m-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #ffc46b, var(--accent) 60%, #e85d2c); transition: width 1s ease; }
-  .m-count { margin-top: 10px; color: var(--muted); font-size: 15px; font-weight: 600; }
-  .m-count strong { color: var(--accent); }
-
   .upcoming { display: grid; gap: 10px; }
   .up {
     display: flex; align-items: center; gap: 18px;
@@ -274,15 +260,6 @@
         <a class="btn" href="https://chat.whatsapp.com/Kb9aeYgL0AfDJxPjairgnR?s=cl&amp;p=i&amp;mlu=0">Join the Group Chat 🤝</a>
       </div>
     </header>
-
-    <section>
-      <h2>The Mission</h2>
-      <div class="mission">
-        <p class="m-big"><span class="m-num">50</span> cool dudes in the chat before Chicago winter.</p>
-        <div class="m-track" id="m-track" hidden><div class="m-fill" id="m-fill"></div></div>
-        <p class="m-count" id="m-count" hidden></p>
-      </div>
-    </section>
 
     <section>
       <h2>The Hangs</h2>
@@ -430,18 +407,6 @@
     row.innerHTML = '<div class="date"><span class="d">' + e.date.getDate() + '</span><span class="m">' + months[e.date.getMonth()] + '</span></div>' +
       '<div><h3>' + e.emoji + ' ' + e.title + '</h3><p>' + e.note + '</p></div>';
     box.appendChild(row);
-  }
-
-  // The mission tracker. Set CREW to the real headcount to light the bar up.
-  const MISSION = 50;
-  const CREW = null; // e.g. 7
-  if (CREW !== null) {
-    const track = document.getElementById('m-track'), count = document.getElementById('m-count');
-    track.hidden = false; count.hidden = false;
-    count.innerHTML = '<strong>' + CREW + ' in.</strong> ' + (MISSION - CREW) + ' spots left.';
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      document.getElementById('m-fill').style.width = Math.min(100, CREW / MISSION * 100) + '%';
-    }));
   }
 
   // scroll reveals: cards and rows float up as they enter the viewport, staggered
